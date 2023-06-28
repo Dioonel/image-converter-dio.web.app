@@ -1,0 +1,131 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding-top: 20px;
+}
+
+.title {
+  font-family: 'Inter';
+  font-size: 3em;
+  font-weight: 400;
+}
+
+.info {
+  font-family: 'Inter';
+  font-size: 1.5em;
+  font-weight: 400;
+  text-align: center;
+}
+
+.input {
+  display: none;
+
+}
+
+.input-custom {
+  border: 2px solid #ccc;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-family: 'Inter';
+  font-size: 1.5em;
+  font-weight: 400;
+}
+
+.input-custom:hover {
+  background-color: #ccc;
+}
+
+.output-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.formats-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+}
+
+.format {
+  width: 60px;
+  height: 40px;
+  position: relative;
+}
+
+.radio {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.visible {
+  border: 2px solid #ccc;
+  width: 60px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.visible-text {
+  font-family: 'Inter';
+  font-size: 1.5em;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.radio:not(:checked):hover + .visible, .radio:checked + .visible {
+  background-color: #ccc;
+}
+
+.submit {
+  border: 2px solid #ccc;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-family: 'Inter';
+  font-size: 1.5em;
+  font-weight: 400;
+}
+
+.submit:hover {
+  background-color: #ccc;
+}
+
+.preview {
+  max-width: 600px;
+}
+
+.loading-text {
+  font-family: 'Inter';
+  font-size: 1.4em;
+  font-weight: 400;
+  text-align: center;
+}
+
+@media screen and (max-width: 800px) {
+  .preview {
+    max-width: 450px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .preview {
+    max-width: 300px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .formats-container {
+    gap: 10px;
+  }
+}

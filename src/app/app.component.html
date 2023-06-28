@@ -1,17 +1,54 @@
 <div class="container">
   <h1 class="title">Image Converter</h1>
   <label class="info">Pick an image you want to convert and select the desired output format.</label>
-  <input class="input" type="file" accept=".png, .jpg, .jpeg, .webp, .jfif, .gif, .tiff" (change)="onFileSelected($event)">
-  <div class="output">
+  <label class="input-custom" for="file-upload">Upload file</label>
+  <input class="input" id="file-upload" type="file" accept=".png, .jpg, .jpeg, .webp, .jfif, .gif, .tiff" (change)="onFileSelected($event)">
+  <img class="preview" [src]="imagePreview" *ngIf="imagePreview">
+  <div class="output-container">
     <label class="info">Output format:</label>
-    <img [src]="imagePreview" *ngIf="imagePreview">
-    <select class="select" [(ngModel)]="outputFormat">
-      <option value="png">PNG</option>
-      <option value="jpg">JPG</option>
-      <option value="jpeg">JPEG</option>
-      <option value="webp">WEBP</option>
-      <option value="gif">GIF</option>
-    </select>
+    <div class="formats-container">
+      <div class="format">
+        <input class="radio" type="radio" name="format" value="png" [(ngModel)]="outputFormat">
+        <div class="visible">
+          <div class="visible-text">
+            PNG
+          </div>
+        </div>
+      </div>
+      <div class="format">
+        <input class="radio" type="radio" name="format" value="jpg" [(ngModel)]="outputFormat">
+        <div class="visible">
+          <div class="visible-text">
+            JPG
+          </div>
+        </div>
+      </div>
+      <div class="format">
+        <input class="radio" type="radio" name="format" value="jpeg" [(ngModel)]="outputFormat">
+        <div class="visible">
+          <div class="visible-text">
+            JPEG
+          </div>
+        </div>
+      </div>
+      <div class="format">
+        <input class="radio" type="radio" name="format" value="webp" [(ngModel)]="outputFormat">
+        <div class="visible">
+          <div class="visible-text">
+            WEBP
+          </div>
+        </div>
+      </div>
+      <div class="format">
+        <input class="radio" type="radio" name="format" value="gif" [(ngModel)]="outputFormat">
+        <div class="visible">
+          <div class="visible-text">
+            GIF
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <button (click)="convert()">Convert</button>
+  <button class="submit" (click)="convert()" [disabled]="loading">Convert</button>
+  <span *ngIf="loading" class="loading-text">Converting...</span>
 </div>
