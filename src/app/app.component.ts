@@ -14,7 +14,6 @@ export class AppComponent {
   loading = false;
 
   constructor(private dataService: DataService) {
-    console.log(this.outputFormat);
   }
 
   onFileSelected(event: any) {
@@ -23,7 +22,7 @@ export class AppComponent {
     if(this.imageSelected) {
       const validTypes = ['image/png', 'image/jpg', 'image/jpeg', 'image/jfif', 'image/webp', 'image/gif'];
       if (!validTypes.includes(this.imageSelected.type)) {
-        alert('Formato de archivo no válido. Por favor, selecciona una imagen en formato PNG, JPG, JPEG, JFIF, WEBP O GIF.');
+        alert('Formato de archivo no válido. Por favor, selecciona una imagen en formato PNG, JPG, JPEG, JFIF, WEBP o GIF.');
         this.imageSelected = null;
         this.imagePreview = null;
         return;
@@ -47,6 +46,10 @@ export class AppComponent {
 
   convert() {
     if(this.imageSelected){
+      if(this.outputFormat === '') {
+        alert('Please select an output format');
+        return;
+      }
       this.loading = true;
       const formData = new FormData();
       formData.append('image', this.imageSelected);
@@ -65,6 +68,10 @@ export class AppComponent {
             a.click();
             window.URL.revokeObjectURL(url);
             a.remove();
+            // reset the form
+            this.imageSelected = null;
+            this.imagePreview = null;
+            this.outputFormat = '';
           },
           error: (error) => {
             this.loading = false;
