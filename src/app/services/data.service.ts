@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class DataService {
   API_URL = 'https://pacific-journey-56838-0d967bd74bd9.herokuapp.com';
-  // API_URL = 'http://localhost:3000';
+  //API_URL = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {}
 

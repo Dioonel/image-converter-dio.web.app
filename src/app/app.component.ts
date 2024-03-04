@@ -61,10 +61,13 @@ export class AppComponent {
             const url= window.URL.createObjectURL(response);
             console.log(url);
             this.loading = false;
+            // file name
+            const originalFileName = this.imageSelected?.name;
+            const convertedFileName = originalFileName?.substring(0, originalFileName.lastIndexOf(".")) + `.${this.outputFormat}`;
             // download the file
             const a = document.createElement('a');
             a.href = url;
-            a.download = `image.${this.outputFormat}`;
+            a.download = convertedFileName;
             a.click();
             window.URL.revokeObjectURL(url);
             a.remove();
@@ -72,6 +75,7 @@ export class AppComponent {
             this.imageSelected = null;
             this.imagePreview = null;
             this.outputFormat = '';
+            this.resetInput();
           },
           error: (error) => {
             this.loading = false;
@@ -83,4 +87,11 @@ export class AppComponent {
       alert('Please select an image');
     }
   }
+
+  resetInput() {
+    const inputElement = document.getElementById('file-upload') as HTMLInputElement;
+    inputElement.value = '';
+  }
 }
+
+
