@@ -3,7 +3,9 @@
   <label class="info">Pick an image you want to convert and select the desired output format.</label>
   <label class="input-custom" for="file-upload">Upload file</label>
   <input class="input" id="file-upload" type="file" accept=".png, .jpg, .jpeg, .webp, .jfif, .gif, .tiff" (change)="onFileSelected($event)">
-  <img class="preview" [src]="imagePreview" *ngIf="imagePreview">
+  @if (imagePreview) {
+<img class="preview" [src]="imagePreview">
+}
   <div class="output-container">
     <label class="info">Output format:</label>
     <div class="formats-container">
@@ -50,5 +52,7 @@
     </div>
   </div>
   <button class="submit" (click)="convert()" [disabled]="loading">Convert</button>
-  <span *ngIf="loading" class="loading-text">Converting...</span>
+  @if (loading) {
+    <span class="loading-text">Converting...</span>
+  }
 </div>
